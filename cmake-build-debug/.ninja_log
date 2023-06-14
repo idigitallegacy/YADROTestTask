@@ -1,0 +1,12 @@
+# ninja log v5
+5521	9180	7083992899227993	TestTask.exe	f5a3c575acd7e78a
+1	583	7084199755771296	build.ninja	1efaaf6b67a67121
+5161	6785	7083961832982936	CMakeFiles/TestTask.dir/Service/Table/Table.cpp.obj	3a9809374fee1799
+6	5520	7083992862612604	CMakeFiles/TestTask.dir/main.cpp.obj	377f4542cf70d36e
+11	2166	7083961786792931	CMakeFiles/TestTask.dir/Datatype/TableHeader/ColumnHeader.cpp.obj	985e80600319e244
+2793	4634	7083961811462966	CMakeFiles/TestTask.dir/Datatype/TableHeader/RowHeader.cpp.obj	bf62f2f132cc14b
+15	1280	7083961777912946	CMakeFiles/TestTask.dir/Datatype/TableHeader/Header.cpp.obj	190c5176d4fce37a
+11	106	7079860314629542	CMakeFiles/TestTask.dir/Datatype/Abstract/Optional.cpp.obj	e4dcb343105f9c34
+2166	2793	7083961793062942	CMakeFiles/TestTask.dir/Service/IOReader/File/FileReader.cpp.obj	cfce06a50369d070
+1281	3201	7083961797142936	CMakeFiles/TestTask.dir/Service/IOReader/StringArray/StringArrayReader.cpp.obj	e09d241e298212af
+3201	5160	7083961816732943	CMakeFiles/TestTask.dir/Service/Table/TableExecutor.cpp.obj	e12f5ba9c402f767
