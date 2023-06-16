@@ -52,11 +52,12 @@ std::string intToStringMapper(const int *intValue) {
 typedef int TestDataType;
 
 int main(int argc, char **argv) {
-    if (argc == 0) {
+    if (argc < 2) {
         std::cout << "No filename provided.";
         return 1;
     }
 
+    std::cout << argc;
     std::string filename = argv[1];
     std::ifstream fin(filename);
     TableExecutor<TestDataType>(fin, &stringToIntMapper).writeTableToConsole(&intToStringMapper);
