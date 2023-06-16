@@ -43,12 +43,6 @@ public:
         *_value = dtype(*value);
         _hasValue = true;
     }
-
-    void removeValue() {
-        delete _value;
-        _value = nullptr;
-        _hasValue = false;
-    }
 };
 
 

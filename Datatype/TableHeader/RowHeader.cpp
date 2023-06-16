@@ -12,7 +12,7 @@
 class RowHeader : public Header {
 private:
     static bool stringValidator(const std::string &string) {
-        std::regex regexMatcher("^[0-9]+$");
+        std::regex regexMatcher(ROW_NAME_REGEX_MATCHER);
         return std::regex_match(string, regexMatcher);
     }
 

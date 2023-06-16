@@ -11,7 +11,7 @@
 class ColumnHeader : public Header {
 private:
     static bool stringValidator(const std::string &string) {
-        std::regex regexMatcher("^[a-zA-Z]+$");
+        std::regex regexMatcher(COLUMN_NAME_REGEX_MATCHER);
         return std::regex_match(string, regexMatcher);
     }
 

@@ -28,7 +28,7 @@ public:
             _stringArrayReader = StringArrayReader(_fileReader);
             _table = Table<dtype>(_stringArrayReader, stringToTypeMapper);
         } catch (FileNotPermittedException &exception) {
-            std::cout << "Unable to open file " << ":\n"
+            std::cout << "Unable to open file" << ":\n"
                       << '\t' << exception.what();
         } catch (EmptyDataException &exception) {
             std::cout << "Unable to read table at line " << exception.lineNumber() << ", column "

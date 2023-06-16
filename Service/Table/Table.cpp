@@ -58,7 +58,7 @@ private:
             else if (letter - '0' >= 0 && letter - '9' <= 0)
                 rowAddress += letter;
             else
-                throw InvalidDataPatternException(-1, -1, cellAddress, (&"Unknown symbol at cell address: " [ letter]));
+                throw InvalidDataPatternException(UNDEFINED_CELL_INDEX, UNDEFINED_CELL_INDEX, cellAddress, (&"Unknown symbol at cell address: " [ letter]));
         }
         return std::make_pair(rowAddress, columnAddress);
     }
@@ -98,7 +98,7 @@ private:
                 return &_hashtable[rowIndex][columnIndex][i];
         }
 
-        throw InvalidCellAddressException(-1, -1, "", ("Invalid requested cell address: " + cellAddress).c_str());
+        throw InvalidCellAddressException(UNDEFINED_CELL_INDEX, UNDEFINED_CELL_INDEX, "", ("Invalid requested cell address: " + cellAddress).c_str());
     }
 
     CellItem<dtype> *calculateTree(CellItem<dtype> *treeRoot) {
@@ -140,8 +140,8 @@ private:
                     continue;
             }
 
-            std::regex regexValueMatcher("^[0-9]+$");
-            std::regex regexCellMatcher("^[a-zA-Z]+[0-9]+$");
+            std::regex regexValueMatcher(CELL_VALUE_REGEX_MATCHER);
+            std::regex regexCellMatcher(CELL_FORMULA_VALUE_REGEX_MATCHER);
 
             CellItem<dtype> *requestedCell = nullptr;
             CellItem<dtype> *requestedOperator = nullptr;

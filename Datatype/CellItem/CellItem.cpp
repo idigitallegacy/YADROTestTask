@@ -37,12 +37,12 @@ private:
     CellItem<dtype> *_right;
 
     static bool validateFormula(const std::string &value) {
-        std::regex regexMatcher("^=[a-zA-Z]+[0-9]+([+-\\/*]{1}[a-zA-Z]+[0-9]+)*$");
+        std::regex regexMatcher(CELL_FORMULA_REGEX_MATCHER);
         return std::regex_match(value, regexMatcher);
     }
 
     static bool validateValue(const std::string &value) {
-        std::regex regexMatcher("^[0-9]+$");
+        std::regex regexMatcher(CELL_VALUE_REGEX_MATCHER);
         return std::regex_match(value, regexMatcher);
     }
 
