@@ -9,8 +9,8 @@
 #include "../TableHeader/RowHeader.cpp"
 #include "../TableHeader/ColumnHeader.cpp"
 
-#include "../../Exception/InvalidCellTreeException.h"
-#include "../../Exception/ZeroDivisionException.h"
+#include "../../Exception/InvalidCellTreeException.cpp"
+#include "../../Exception/ZeroDivisionException.cpp"
 
 enum CellItemType {
     formula = 0,

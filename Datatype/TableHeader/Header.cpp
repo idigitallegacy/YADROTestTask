@@ -8,7 +8,7 @@
 #include <string>
 #include <regex>
 #include "../../cfg.h"
-#include "../../Exception/InvalidDataPatternException.h"
+#include "../../Exception/InvalidDataPatternException.cpp"
 
 class Header {
 protected:

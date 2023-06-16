@@ -2,10 +2,11 @@
 // Created by elfxe on 13.06.2023.
 //
 
-#ifndef TESTTASK_INVALIDCELLADDRESSEXCEPTION_H
-#define TESTTASK_INVALIDCELLADDRESSEXCEPTION_H
+#ifndef TESTTASK_INVALIDCELLADDRESSEXCEPTION_CPP
+#define TESTTASK_INVALIDCELLADDRESSEXCEPTION_CPP
 
 #include <exception>
+#include <string>
 #include "../cfg.h"
 
 class InvalidCellAddressException : public std::exception {
@@ -34,4 +35,4 @@ public:
     }
 };
 
-#endif //TESTTASK_INVALIDCELLADDRESSEXCEPTION_H
+#endif //TESTTASK_INVALIDCELLADDRESSEXCEPTION_CPP

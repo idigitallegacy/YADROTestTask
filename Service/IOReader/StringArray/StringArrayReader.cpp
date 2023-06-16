@@ -14,7 +14,7 @@
 #include "../File/FileReader.cpp"
 #include "../../../cfg.h"
 
-#include "../../../Exception/EmptyDataException.h"
+#include "../../../Exception/EmptyDataException.cpp"
 
 class StringArrayReader {
 private:

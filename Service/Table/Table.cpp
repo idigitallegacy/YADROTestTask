@@ -12,9 +12,9 @@
 #include "../../Datatype/CellItem/CellItem.cpp"
 #include "../IOReader/StringArray/StringArrayReader.cpp"
 
-#include "../../Exception/InvalidOperatorException.h"
-#include "../../Exception/SelfReferenceException.h"
-#include "../../Exception/InvalidCellAddressException.h"
+#include "../../Exception/InvalidOperatorException.cpp"
+#include "../../Exception/SelfReferenceException.cpp"
+#include "../../Exception/InvalidCellAddressException.cpp"
 
 template<typename dtype>
 class Table {

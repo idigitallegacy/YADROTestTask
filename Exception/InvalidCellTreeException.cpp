@@ -2,26 +2,26 @@
 // Created by elfxe on 13.06.2023.
 //
 
-#ifndef TESTTASK_ZERODIVISIONEXCEPTION_H
-#define TESTTASK_ZERODIVISIONEXCEPTION_H
+#ifndef TESTTASK_INVALIDCELLTREEEXCEPTION_CPP
+#define TESTTASK_INVALIDCELLTREEEXCEPTION_CPP
 
-#include "UnknownException.h"
+#include "UnknownException.cpp"
 
-class ZeroDivisionException : public UnknownException {
+class InvalidCellTreeException : public UnknownException {
 private:
     INDEX_T _lineNumber;
     INDEX_T _columnNumber;
     std::string _value;
 public:
-    explicit ZeroDivisionException(
+    explicit InvalidCellTreeException(
             INDEX_T lineNumber = 0,
             INDEX_T columnNumber = 0,
             std::string value = "",
             const char *message = "")
             : _value(std::move(value)),
-              _lineNumber(lineNumber),
-              _columnNumber(columnNumber),
-              UnknownException("", message) { }
+            _lineNumber(lineNumber),
+            _columnNumber(columnNumber),
+            UnknownException("", message) { }
 
     [[nodiscard]] INDEX_T lineNumber() const {
         return _lineNumber;
@@ -36,4 +36,4 @@ public:
     }
 };
 
-#endif //TESTTASK_ZERODIVISIONEXCEPTION_H
+#endif //TESTTASK_INVALIDCELLTREEEXCEPTION_CPP

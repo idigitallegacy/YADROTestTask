@@ -12,19 +12,19 @@ add_executable(
         Datatype/TableHeader/ColumnHeader.cpp
         Datatype/TableHeader/RowHeader.cpp
 
-        Datatype/Abstract/Optional.h Datatype/Abstract/Optional.cpp
+        Datatype/Abstract/Optional.cpp
 
         Service/IOReader/File/FileReader.cpp
         Service/IOReader/StringArray/StringArrayReader.cpp
         Service/Table/Table.cpp
         Service/Table/TableExecutor.cpp
 
-        Exception/FileNotPermittedException.h
-        Exception/EmptyDataException.h
-        Exception/InvalidDataPatternException.h
-        Exception/UnknownException.h
-        Exception/InvalidCellTreeException.h
-        Exception/ZeroDivisionException.h
-        Exception/InvalidOperatorException.h
-        Exception/SelfReferenceException.h
-        Exception/InvalidCellAddressException.h)
+        Exception/FileNotPermittedException.cpp
+        Exception/EmptyDataException.cpp
+        Exception/InvalidDataPatternException.cpp
+        Exception/UnknownException.cpp
+        Exception/InvalidCellTreeException.cpp
+        Exception/ZeroDivisionException.cpp
+        Exception/InvalidOperatorException.cpp
+        Exception/SelfReferenceException.cpp
+        Exception/InvalidCellAddressException.cpp)

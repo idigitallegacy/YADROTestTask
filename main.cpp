@@ -51,7 +51,7 @@ std::string intToStringMapper(const int *intValue) {
 
 typedef int TestDataType;
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
     if (argc == 0) {
         std::cout << "No filename provided.";
         return 1;

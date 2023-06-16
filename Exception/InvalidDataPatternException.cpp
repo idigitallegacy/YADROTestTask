@@ -5,6 +5,7 @@
 #ifndef TESTTASK_INVALIDPATTERNEXCEPTION_CPP
 #define TESTTASK_INVALIDPATTERNEXCEPTION_CPP
 #include <exception>
+#include <string>
 #include "../cfg.h"
 
 class InvalidDataPatternException : public std::exception {

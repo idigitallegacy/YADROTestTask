@@ -10,7 +10,7 @@
 #include "../IOReader/File/FileReader.cpp"
 #include "Table.cpp"
 
-#include "../../Exception/FileNotPermittedException.h"
+#include "../../Exception/FileNotPermittedException.cpp"
 
 
 template<typename dtype>

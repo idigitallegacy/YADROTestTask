@@ -2,10 +2,11 @@
 // Created by elfxe on 13.06.2023.
 //
 
-#ifndef TESTTASK_UNKNOWNEXCEPTION_H
-#define TESTTASK_UNKNOWNEXCEPTION_H
+#ifndef TESTTASK_UNKNOWNEXCEPTION_CPP
+#define TESTTASK_UNKNOWNEXCEPTION_CPP
 
 #include <exception>
+#include <string>
 #include "../cfg.h"
 
 class UnknownException : public std::exception {
@@ -24,4 +25,4 @@ public:
     }
 };
 
-#endif //TESTTASK_UNKNOWNEXCEPTION_H
+#endif //TESTTASK_UNKNOWNEXCEPTION_CPP

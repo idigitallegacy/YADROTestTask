@@ -2,11 +2,12 @@
 // Created by elfxe on 13.06.2023.
 //
 
-#ifndef TESTTASK_EMPTYDATAEXCEPTION_H
-#define TESTTASK_EMPTYDATAEXCEPTION_H
+#ifndef TESTTASK_EMPTYDATAEXCEPTION_CPP
+#define TESTTASK_EMPTYDATAEXCEPTION_CPP
 
 #include <exception>
 #include <utility>
+#include <string>
 #include "../cfg.h"
 
 class EmptyDataException : public std::exception {
@@ -35,4 +36,4 @@ public:
     }
 };
 
-#endif //TESTTASK_EMPTYDATAEXCEPTION_H
+#endif //TESTTASK_EMPTYDATAEXCEPTION_CPP
