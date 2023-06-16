@@ -112,7 +112,7 @@ private:
                 throw EmptyDataException(verticalIndex + 1, horizontalIndex, _fileAsStringArray[verticalIndex + 1], "Too few cells in a row.");
             ++verticalIndex;
         }
-        if (verticalIndex < _horizontalSize)
+        if (verticalIndex < _verticalSize)
             throw EmptyDataException(verticalIndex, 0, "", "Too few rows.");
     }
 
