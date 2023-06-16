@@ -57,7 +57,6 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    std::cout << argc;
     std::string filename = argv[1];
     std::ifstream fin(filename);
     TableExecutor<TestDataType>(fin, &stringToIntMapper).writeTableToConsole(&intToStringMapper);
