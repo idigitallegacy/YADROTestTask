@@ -115,7 +115,8 @@ private:
 
     CellItem<dtype> *parseFormula(CellItem<dtype> *cell, dtype(*stringToTypeMapper)(const std::string &), long long recursionDepth = 0) {
         // TODO: Parse pairs in the right order to follow the operators' priority (if the cell contains more than 1 operator)
-
+        // If the cells are indirectly self-referenced, it leads to infinite recursion. There's an idea to check the tree cycle, but I actually
+        // couldn't have imagined how to do it fine.
         if (recursionDepth > MAX_RECURSION_DEPTH)
             throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Recursion depth limit exceed. May be, self referenced cell.");
 
@@ -188,22 +189,6 @@ private:
                     }
                 }
 
-                // trying to add requested cell into the tree
-                CellItem<dtype> *tempLeft = cell->getLeft();
-                CellItem<dtype> *tempRight = cell->getRight();
-                if (tempLeft == nullptr)
-                    cell->setLeft(requestedCell);
-                else if (tempRight == nullptr)
-                    cell->setRight(requestedCell);
-
-                // If the cell is indirectly self-referenced
-                if (!treeValidator(cell))
-                    throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced (may be, using some others) cell.");
-
-                // rollback
-                cell->setLeft(tempLeft);
-                cell->setRight(tempRight);
-
 
                 CellItem<dtype> *parsedSubcell = parseFormula(requestedCell, stringToTypeMapper, recursionDepth + 1);
                 if (cell->getLeft() == nullptr)
@@ -257,18 +242,6 @@ private:
                 }
             }
 
-            // trying to add requested cell into tree
-            CellItem<dtype> *tempLeft = cell->getLeft();
-            CellItem<dtype> *tempRight = cell->getRight();
-            if (tempLeft == nullptr)
-                cell->setLeft(requestedCell);
-            else if (tempRight == nullptr)
-                cell->setRight(requestedCell);
-
-            // If the cell is indirectly self-referenced
-            if (!treeValidator(cell))
-                throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced (may be, using some others) cell.");
-
             CellItem<dtype> *parsedSubcell = parseFormula(requestedCell, stringToTypeMapper, recursionDepth + 1);
 
             requestedOperator->setLeft(previousCell);
@@ -279,7 +252,7 @@ private:
             previousOperator = letter;
         }
 
-        return treeValidator(previousCell) ? previousCell : throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced (may be, using some others) cell.");
+        return previousCell;
     }
 
     CellItem<dtype> parseCell(const RowHeader &rowHeader, const ColumnHeader &columnHeader, const std::string &value, dtype(*stringToTypeMapper)(const std::string &)) {
