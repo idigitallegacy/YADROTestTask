@@ -1,3 +1,0 @@
-C:/Users/elfxe/CLionProjects/New/YadroTestTask/cmake-build-debug/CMakeFiles/TestTask.dir
-C:/Users/elfxe/CLionProjects/New/YadroTestTask/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/elfxe/CLionProjects/New/YadroTestTask/cmake-build-debug/CMakeFiles/rebuild_cache.dir
