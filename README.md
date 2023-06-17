@@ -1,4 +1,6 @@
 # YADROTestTask
+![Build and test](https://github.com/idigitallegacy/YADROTestTask/actions/workflows/test-build.yml/badge.svg)
+
 Проблема из коммита [e85f14e](https://github.com/idigitallegacy/YADROTestTask/commit/e85f14e8f562ca6afa6281ce9e4837e4e8425b64) была решена простой заменой `argv[0]` на `argv[1]` :))
 
 Также были замечены несколько дополнительных багов. Fixed as much, as I've seen.
