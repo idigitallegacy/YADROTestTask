@@ -1,0 +1,26 @@
+name: Windows Build + Test Run
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup CL
+        uses: ilammy/msvc-dev-cmd@v1.12.1
+      - name: Setup
+        run: |
+          cmake -G "NMake Makefiles" .
+          nmake
+      - name: Run
+        run: ./TestTaskTest.exe
