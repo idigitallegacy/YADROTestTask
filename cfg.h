@@ -25,7 +25,8 @@
     #ifdef __linux__
         #define TEST_DATA_PATH "./TestData/"
     #elif _WIN32
-        #define TEST_DATA_PATH "C:\\Users\\elfxe\\CLionProjects\\New\\YadroTestTask\\TestData\\"
+        // Github workflow path
+        #define TEST_DATA_PATH "D:\\a\\YADROTestTask\\YADROTestTask\\TestData\\"
     #elif __APPLE__
         #define TEST_DATA_PATH "./TestData/"
     #endif
