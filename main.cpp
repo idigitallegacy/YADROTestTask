@@ -1,8 +1,5 @@
 #include <iostream>
-#include "Datatype/TableHeader/ColumnHeader.cpp"
 
-#include "Service/IOReader/File/FileReader.cpp"
-#include "Service/IOReader/StringArray/StringArrayReader.cpp"
 #include "Service/Table/TableExecutor.cpp"
 
 #include <fstream>
