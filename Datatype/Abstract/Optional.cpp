@@ -34,14 +34,27 @@ public:
 
     void setValue(dtype *value) {
         if (value == nullptr) {
+            delete _value;
+            _value = nullptr;
             _hasValue = false;
             return;
         }
 
-        if (_value == nullptr)
-            _value = new dtype(*value);
+        delete _value;
+        _value = new dtype(*value);
         *_value = dtype(*value);
         _hasValue = true;
+    }
+
+    Optional<dtype>(const Optional<dtype> &cpd) {
+        _value = nullptr;
+        if (cpd._value != nullptr)
+            _value = new dtype(*(cpd._value));
+        _hasValue = cpd._hasValue;
+    }
+
+    ~Optional() {
+        setValue(nullptr);
     }
 };
 
