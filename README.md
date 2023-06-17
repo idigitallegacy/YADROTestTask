@@ -1,5 +1,7 @@
 # YADROTestTask
-![Build and test](https://github.com/idigitallegacy/YADROTestTask/actions/workflows/test-build.yml/badge.svg)
+![Ubuntu Build and test](https://github.com/idigitallegacy/YADROTestTask/actions/workflows/ubuntu-build-test.yml/badge.svg)
+
+![Windows Build and test](https://github.com/idigitallegacy/YADROTestTask/actions/workflows/windows-build-test.yml/badge.svg)
 
 Проблема из коммита [e85f14e](https://github.com/idigitallegacy/YADROTestTask/commit/e85f14e8f562ca6afa6281ce9e4837e4e8425b64) была решена простой заменой `argv[0]` на `argv[1]` :))
 
@@ -60,8 +62,8 @@ make
 3. Если необходимо, измените константы в `cfg.h` (например, константу `TEST_DATA_PATH` для запуска GTest).
 4. Соберите исходники:
 ```shell
-<Path_to_cmake_executable>\cmake.exe <Path_to_unpacked_archive>\YADROTestTask-dev
-<Path_to_make_executable>\make.exe <Path_to_unpacked_archive>\YADROTestTask-dev
+<Path_to_cmake_executable>\cmake.exe "<Path_to_unpacked_archive>\YADROTestTask-dev"
+<Path_to_nmake_executable>\nmake.exe "<Path_to_unpacked_archive>\YADROTestTask-dev"
 ```
 5. Запустите (см. раздел ["Запуск приложения"](https://github.com/idigitallegacy/YADROTestTask/tree/dev#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F))
 
