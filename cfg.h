@@ -17,8 +17,12 @@
 #define MAX_RECURSION_DEPTH 100 // used to detect self-references (I've got an idea, how to detect it better, but don't know how to elaborate it)
 #endif
 
+#ifndef TEST_DATA_PATH
+#define TEST_DATA_PATH "C:\\Users\\elfxe\\CLionProjects\\New\\YadroTestTask\\TestData\\"
+#endif
+
 #ifndef UNDEFINED_CELL_INDEX
-#define UNDEFINED_CELL_INDEX -1 // used to throw exceptions, while the cell index id undefined yet.
+#define UNDEFINED_CELL_INDEX (-1) // used to throw exceptions, while the cell index id undefined yet.
 #endif
 
 #ifndef CELL_FORMULA_REGEX_MATCHER

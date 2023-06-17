@@ -17,7 +17,7 @@ std::string intToStringMapper(const int *intValue) {
 }
 
 TEST(TableData, DefaultTest) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DefaultTest.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DefaultTest.csv";
     std::ifstream fin(pathToTest);
     std::string out = TableExecutor<TestDataType>(fin, &stringToIntMapper).getTable(&intToStringMapper);
     fin.close();
@@ -30,7 +30,7 @@ TEST(TableData, DefaultTest) {
 }
 
 TEST(TableData, TestData1) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\Data\TestData1.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "Data\\TestData1.csv";
     std::ifstream fin(pathToTest);
     std::string out = TableExecutor<TestDataType>(fin, &stringToIntMapper).getTable(&intToStringMapper);
     fin.close();
@@ -45,7 +45,7 @@ TEST(TableData, TestData1) {
 }
 
 TEST(TableData, TestData2) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\Data\TestData2.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "Data\\TestData2.csv";
     std::ifstream fin(pathToTest);
     std::string out = TableExecutor<TestDataType>(fin, &stringToIntMapper).getTable(&intToStringMapper);
     fin.close();
@@ -60,7 +60,7 @@ TEST(TableData, TestData2) {
 }
 
 TEST(TableIO, EmptyHeader) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\WrongInput\WrongHeader1.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "WrongInput\\WrongHeader1.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), EmptyDataException);
@@ -68,7 +68,7 @@ TEST(TableIO, EmptyHeader) {
 }
 
 TEST(TableIO, WrongHeader) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\WrongInput\WrongHeader2.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "WrongInput\\WrongHeader2.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), InvalidDataPatternException);
@@ -76,7 +76,7 @@ TEST(TableIO, WrongHeader) {
 }
 
 TEST(TableIO, WrongCellsAmount) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\WrongInput\WrongCellsAmount.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "WrongInput\\WrongCellsAmount.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), EmptyDataException);
@@ -84,7 +84,7 @@ TEST(TableIO, WrongCellsAmount) {
 }
 
 TEST(TableIO, WrongCellValue) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\WrongInput\WrongCellValue.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "WrongInput\\WrongCellValue.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), InvalidDataPatternException);
@@ -92,7 +92,7 @@ TEST(TableIO, WrongCellValue) {
 }
 
 TEST(TableIO, WrongOperator) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\WrongInput\WrongOperator.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "WrongInput\\WrongOperator.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), InvalidDataPatternException);
@@ -100,7 +100,7 @@ TEST(TableIO, WrongOperator) {
 }
 
 TEST(TableDataSize, EmptyTable) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DataSize\EmptyTable.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DataSize\\EmptyTable.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_NO_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper));
@@ -108,7 +108,7 @@ TEST(TableDataSize, EmptyTable) {
 }
 
 TEST(TableDataSize, EmptyRows) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DataSize\EmptyRows.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DataSize\\EmptyRows.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_NO_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper));
@@ -116,7 +116,7 @@ TEST(TableDataSize, EmptyRows) {
 }
 
 TEST(TableDataSize, EmptyCols) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DataSize\EmptyCols.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DataSize\\EmptyCols.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_NO_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper));
@@ -124,7 +124,7 @@ TEST(TableDataSize, EmptyCols) {
 }
 
 TEST(TableDataSize, InequalSize1) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DataSize\InequalSize1.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DataSize\\InequalSize1.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_NO_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper));
@@ -132,7 +132,7 @@ TEST(TableDataSize, InequalSize1) {
 }
 
 TEST(TableDataSize, InequalSize2) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DataSize\InequalSize2.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DataSize\\InequalSize2.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_NO_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper));
@@ -140,7 +140,7 @@ TEST(TableDataSize, InequalSize2) {
 }
 
 TEST(TableDataSize, BigTable) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DataSize\InequalSize1.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DataSize\\InequalSize1.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_NO_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper));
@@ -148,7 +148,7 @@ TEST(TableDataSize, BigTable) {
 }
 
 TEST(TableLogic, InvalidRequestedCell) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\Logic\InvalidRequestedCell.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "Logic\\InvalidRequestedCell.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), InvalidCellAddressException);
@@ -156,7 +156,7 @@ TEST(TableLogic, InvalidRequestedCell) {
 }
 
 TEST(TableLogic, DirectSelfReference) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\Logic\DirectSelfReference.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "Logic\\DirectSelfReference.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), SelfReferenceException);
@@ -164,7 +164,7 @@ TEST(TableLogic, DirectSelfReference) {
 }
 
 TEST(TableLogic, IndirectSelfReference1) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\Logic\IndirectSelfReference1.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "Logic\\IndirectSelfReference1.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), SelfReferenceException);
@@ -172,7 +172,7 @@ TEST(TableLogic, IndirectSelfReference1) {
 }
 
 TEST(TableLogic, IndirectSelfReference2) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\Logic\IndirectSelfReference2.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "Logic\\IndirectSelfReference2.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), SelfReferenceException);
@@ -180,7 +180,7 @@ TEST(TableLogic, IndirectSelfReference2) {
 }
 
 TEST(TableLogic, ZeroDivision) {
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\Logic\ZeroDivision.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "Logic\\ZeroDivision.csv";
     std::ifstream fin(pathToTest);
 
     EXPECT_THROW(TableExecutor<TestDataType>(fin, &stringToIntMapper), ZeroDivisionException);
@@ -188,14 +188,14 @@ TEST(TableLogic, ZeroDivision) {
 }
 
 TEST(TablePerformance, BigTable) {
-    clock_t t;
+    clock_t executionTime;
 
-    std::string pathToTest = R"(C:\Users\elfxe\CLionProjects\New\YadroTestTask\TestData\DataSize\BigTable.csv)";
+    std::string pathToTest = std::string(TEST_DATA_PATH) + "DataSize\\BigTable.csv";
     std::ifstream fin(pathToTest);
 
-    t = clock();
+    executionTime = clock();
     TableExecutor<TestDataType> executor = TableExecutor<TestDataType>(fin, &stringToIntMapper);
-    t = clock() - t;
+    executionTime = clock() - executionTime;
 
-    EXPECT_LE(t / CLOCKS_PER_SEC, 2);
+    EXPECT_LE(executionTime / CLOCKS_PER_SEC, 2);
 }
