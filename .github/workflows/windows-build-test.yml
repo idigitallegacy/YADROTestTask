@@ -16,7 +16,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup CL
+        uses: ilammy/msvc-dev-cmd@v1.12.1
       - name: Setup
-        run: cmake . && cd D:/a/YADROTestTask/YADROTestTask && CL main.cpp
+        run: cmake . && cd D:/a/YADROTestTask/YADROTestTask && cl main.cpp && ls
       - name: Run
         run: ./TestTaskTest.exe
