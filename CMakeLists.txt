@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.0)
 project(TestTask)
 
 set(CMAKE_CXX_STANDARD 17)
-#cmake_policy(VERSION 3.20.0)
 
 include(FetchContent)
 FetchContent_Declare(
