@@ -30,41 +30,49 @@ public:
         } catch (FileNotPermittedException &exception) {
             std::cout << "Unable to open file" << ":\n"
                       << '\t' << exception.what();
+            throw;
         } catch (EmptyDataException &exception) {
             std::cout << "Unable to read table at line " << exception.lineNumber() << ", column "
                       << exception.columnNumber() << ": \n"
                       << '\'' << exception.line() << '\'' << '\n'
                       << '\t' << exception.what();
+            throw;
         } catch (InvalidDataPatternException &exception) {
             std::cout << "Invalid data/header pattern at line " << exception.lineNumber() << ", column "
                       << exception.columnNumber() << ": \n"
                       << '\'' << exception.value() << '\'' << '\n'
                       << '\t' << exception.what();
+            throw;
         } catch (InvalidCellTreeException &exception) {
             std::cout << "Unable to calculate cell at line " << exception.lineNumber() << ", column "
                       << exception.columnNumber() << ": \n"
                       << '\'' << exception.cellValue() << '\'' << '\n'
                       << '\t' << exception.what();
+            throw;
         } catch (ZeroDivisionException &exception) {
             std::cout << "Zero division reached at line " << exception.lineNumber() << ", column "
                       << exception.columnNumber() << ": \n"
                       << '\'' << exception.cellValue() << '\'' << '\n'
                       << '\t' << exception.what();
+            throw;
         } catch (InvalidOperatorException &exception) {
             std::cout << "Invalid operator caught at line " << exception.lineNumber() << ", column "
                       << exception.columnNumber() << ": \n"
                       << '\'' << exception.value() << '\'' << '\n'
                       << '\t' << exception.what();
+            throw;
         } catch (SelfReferenceException &exception) {
             std::cout << "Self-referenced cell at line " << exception.lineNumber() << ", column "
                       << exception.columnNumber() << ": \n"
                       << '\'' << exception.value() << '\'' << '\n'
                       << '\t' << exception.what();
+            throw;
         } catch (InvalidCellAddressException &exception) {
             std::cout << "Invalid requested cell address at line " << exception.lineNumber() << ", column "
                       << exception.columnNumber() << ": \n"
                       << '\'' << exception.value() << '\'' << '\n'
                       << '\t' << exception.what();
+            throw;
         }
     }
 
@@ -80,6 +88,22 @@ public:
             }
             std::cout << '\n';
         }
+    }
+
+    std::string getTable(std::string(*typeToStingMapper)(const dtype *)) {
+        std::string result;
+        std::vector<std::vector<std::string>> valueArray = _table.getFormattedTable(typeToStingMapper);
+        for (auto &row: valueArray) {
+            std::string &lastCell = row[row.size() - 1];
+            for (auto &cell: row) {
+                if (&cell == &lastCell)
+                    result += cell;
+                else
+                    result += cell + ',';
+            }
+            result += '\n';
+        }
+        return result;
     }
 };
 
