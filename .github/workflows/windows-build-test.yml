@@ -17,6 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup
-        run: cmake . && make
+        run: cmake . && cd D:/a/YADROTestTask/YADROTestTask && make
       - name: Run
         run: ./TestTaskTest.exe
