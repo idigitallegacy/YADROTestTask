@@ -19,6 +19,8 @@ jobs:
       - name: Setup CL
         uses: ilammy/msvc-dev-cmd@v1.12.1
       - name: Setup
-        run: cmake . && cd D:/a/YADROTestTask/YADROTestTask && cl main.cpp && ls
+        run: |
+          cmake -G "NMake Makefiles" .
+          nmake
       - name: Run
         run: ./TestTaskTest.exe
