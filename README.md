@@ -3,6 +3,23 @@
 
 Также были замечены несколько дополнительных багов. Fixed as much, as I've seen.
 ## Инструкции по установке
+После скачивания проекта, не отключайтесь от интернета. Внутри `CMakeLists.txt` используется `fetchContent()` для определения библиотеки `googletest`. Во время сборки могут быть показаны следующие предупреждения:
+```
+CMake Warning (dev) at E:/CLion 2023.1.3/bin/cmake/win/x64/share/cmake-3.25/Modules/FetchContent.cmake:1284 (message):
+  The DOWNLOAD_EXTRACT_TIMESTAMP option was not given and policy CMP0135 is
+  not set.  The policy's OLD behavior will be used.  When using a URL
+  download, the timestamps of extracted files should preferably be that of
+  the time of extraction, otherwise code that depends on the extracted
+  contents might not be rebuilt if the URL changes.  The OLD behavior
+  preserves the timestamps from the archive instead, but this is usually not
+  what you want.  Update your project to the NEW behavior or specify the
+  DOWNLOAD_EXTRACT_TIMESTAMP option with a value of true to avoid this
+  robustness issue.
+Call Stack (most recent call first):
+  CMakeLists.txt:7 (FetchContent_Declare)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+```
+Просто проигнорируйте их.
 ### Linux
 0. Убедитесь, что установлены `g++` и `cmake`. Если их нет:
 ```bash
@@ -65,13 +82,13 @@ make
 #### Main
 Из той же директории, в которой выполнялась команда `make` выполните:
 ```shell
-./TestTask.exe "<path_to_csv_file>"
+.\TestTask.exe "<path_to_csv_file>"
 ```
 Гарантируется, что программа работает, по меньшей мере, с **абсолютным** <path_to_csv_file> (например, `C:\test\data.csv`). С относительным запустить не удалось.
 #### GTest
 Из той же директории, в которой выполнялась команда `make` выполните:
 ```bash
-./TestTaskTest.exe
+.\TestTaskTest.exe
 ```
 Учтите, что необходимо изменить константу `TEST_DATA_PATH` в файле `cfg.h` (в корне репозитория) на путь, соответствующий директории `TestData` репозитория.
 
