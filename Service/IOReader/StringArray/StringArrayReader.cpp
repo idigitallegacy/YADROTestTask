@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <string>
-#include <exception>
+#include <sstream>
 
 #include "../../../Datatype/TableHeader/ColumnHeader.cpp"
 #include "../../../Datatype/TableHeader/RowHeader.cpp"
