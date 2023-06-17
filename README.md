@@ -22,6 +22,7 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 Просто проигнорируйте их.
 ### Linux
 Программа под Linux запускалась как из-под IDE CLion, так и из терминала (следуя указанным ниже инструкциям).
+
 0. Убедитесь, что установлены `g++` и `cmake`. Если их нет:
 ```bash
 sudo apt install g++
@@ -51,6 +52,7 @@ make
 
 ### Windows
 Программа под Windows запускалась только из-под IDE CLion.
+
 1. [Скачайте архив](https://github.com/idigitallegacy/YADROTestTask/archive/refs/heads/dev.zip)
 2. Распакуйте его.
 3. Если необходимо, измените константы в `cfg.h` (например, константу `TEST_DATA_PATH` для запуска GTest).
