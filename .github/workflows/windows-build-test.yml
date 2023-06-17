@@ -24,9 +24,26 @@ jobs:
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
           
-      - name: Install dependencies on windows
+      - name: Install dependencies
         run: |
           choco install ninja cmake
           ninja --version
           cmake --version
-        # cmd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+          cmd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+          
+      - name: Configure
+        shell: bash
+        run: |
+          mkdir build
+          mkdir instdir
+          cmake \
+            -S . \
+            -B . \
+            -DCMAKE_BUILD_TYPE="Debug" \
+            -G "Visual Studio 16 2019"
+      - name: Build
+        shell: bash
+        run: cmake --build .
+      
+      - name: Tmp
+        run: ls
