@@ -1,4 +1,4 @@
-name: Build + Test Run
+name: Ubuntu Build + Test Run
 
 on:
   push:
