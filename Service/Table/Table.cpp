@@ -63,29 +63,6 @@ private:
         return std::make_pair(rowAddress, columnAddress);
     }
 
-    bool checkTreeCycle(CellItem<dtype> *cycleRoot, std::vector<CellItem<dtype> *> &visitedCells) {
-        if (cycleRoot->getLeft() == nullptr && cycleRoot->getRight() == nullptr)
-            return false;
-
-        if (std::find(visitedCells.begin(), visitedCells.end(), cycleRoot) != visitedCells.end())
-            return true;
-
-        visitedCells.push_back(cycleRoot);
-        bool cycleInSubtree = false;
-
-        if (cycleRoot->getLeft() != nullptr)
-            cycleInSubtree = checkTreeCycle(cycleRoot->getLeft(), visitedCells);
-        if (cycleRoot->getRight() != nullptr && !cycleInSubtree)
-            cycleInSubtree = checkTreeCycle(cycleRoot->getRight(), visitedCells);
-
-        return cycleInSubtree;
-    }
-
-    bool treeValidator(CellItem<dtype> *root) {
-        std::vector<CellItem<dtype> *> visitedCells;
-        return !checkTreeCycle(root, visitedCells);
-    }
-
     CellItem<dtype> *findCellAddress(const std::string &cellAddress) {
         std::pair<std::string, std::string> cellRowAndColumn = splitCellAddress(cellAddress);
 
@@ -327,7 +304,7 @@ public:
         std::vector<std::vector<std::string>> result = std::vector<std::vector<std::string>>();
 
         result.emplace_back();
-        result[0].push_back("");
+        result[0].emplace_back("");
         for (auto &columnHeader : _columnHeaders) {
             result[0].push_back(columnHeader.getStringValue());
         }
