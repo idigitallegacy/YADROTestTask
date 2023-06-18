@@ -123,11 +123,10 @@ private:
         if (recursionDepth > MAX_RECURSION_DEPTH && MAX_RECURSION_DEPTH != 0)
             throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Recursion depth limit exceed. May be, self referenced cell.");
 
-        if (cell->cellItemType == CellItemType::value)
+        if (cell->cellItemType == CellItemType::value) {
+            cell->cellStatus = CellStatus::await;
             return cell;
-
-        if (cell->cellStatus == CellStatus::calculating)
-            throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced cell.");
+        }
 
         cell->cellStatus = CellStatus::calculating;
 
@@ -162,12 +161,12 @@ private:
                 } catch (InvalidCellAddressException &exception) {
                     throw InvalidCellAddressException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), exception.what());
                 }
-                if (requestedCell->cellStatus == CellStatus::calculating)
-                    throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced cell.");
             } else
                 requestedCell = new CellItem<dtype>(cell->getRowHeader(), cell->getColumnHeader(), CellItemType::value, requestedCellAddress, stringToTypeMapper);
 
-            requestedCell->cellStatus = CellStatus::calculating;
+            // If cell is indirectly self-referenced
+            if (requestedCell->cellStatus == CellStatus::calculating)
+                throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced cell.");
 
             // If cell is directly self-referenced
             if (requestedCell == cell)
@@ -203,6 +202,8 @@ private:
 
 
                 CellItem<dtype> *parsedSubcell = parseFormula(requestedCell, stringToTypeMapper, recursionDepth + 1);
+                parsedSubcell->cellStatus = CellStatus::await;
+
                 if (cell->getLeft() == nullptr)
                     cell->setLeft(parsedSubcell);
                 else
@@ -255,6 +256,7 @@ private:
             }
 
             CellItem<dtype> *parsedSubcell = parseFormula(requestedCell, stringToTypeMapper, recursionDepth + 1);
+            parsedSubcell->cellStatus = CellStatus::await;
 
             requestedOperator->setLeft(previousCell);
             requestedOperator->setRight(parsedSubcell);
