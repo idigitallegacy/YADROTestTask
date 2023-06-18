@@ -102,26 +102,34 @@ private:
     }
 
     CellItem<dtype> *calculateTree(CellItem<dtype> *treeRoot) {
-        if (treeRoot->cellItemType == CellItemType::value)
+        if (treeRoot->cellItemType == CellItemType::value) {
+            treeRoot->cellStatus = CellStatus::await;
             return treeRoot;
+        }
 
         if (treeRoot->getLeft() != nullptr)
             treeRoot->setLeft(calculateTree(treeRoot->getLeft()));
         if (treeRoot->getRight() != nullptr)
             treeRoot->setRight(calculateTree(treeRoot->getRight()));
         treeRoot->calculateValue();
+
+        treeRoot->cellStatus = CellStatus::await;
         return treeRoot;
     }
 
     CellItem<dtype> *parseFormula(CellItem<dtype> *cell, dtype(*stringToTypeMapper)(const std::string &), long long recursionDepth = 0) {
         // TODO: Parse pairs in the right order to follow the operators' priority (if the cell contains more than 1 operator)
-        // If the cells are indirectly self-referenced, it leads to infinite recursion. There's an idea to check the tree cycle, but I actually
-        // couldn't have imagined how to do it fine.
-        if (recursionDepth > MAX_RECURSION_DEPTH)
+        // If the cells are indirectly self-referenced, it leads to infinite recursion. If the default check doesn't pass, this will.
+        if (recursionDepth > MAX_RECURSION_DEPTH && MAX_RECURSION_DEPTH != 0)
             throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Recursion depth limit exceed. May be, self referenced cell.");
 
         if (cell->cellItemType == CellItemType::value)
             return cell;
+
+        if (cell->cellStatus == CellStatus::calculating)
+            throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced cell.");
+
+        cell->cellStatus = CellStatus::calculating;
 
         std::string requestedCellAddress;
         std::string formula = formatFormula(cell->getFormula());
@@ -154,8 +162,12 @@ private:
                 } catch (InvalidCellAddressException &exception) {
                     throw InvalidCellAddressException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), exception.what());
                 }
+                if (requestedCell->cellStatus == CellStatus::calculating)
+                    throw SelfReferenceException(cell->getRowHeader().getIndexValue(), cell->getColumnHeader().getIndexValue(), cell->getFormula(), "Self referenced cell.");
             } else
                 requestedCell = new CellItem<dtype>(cell->getRowHeader(), cell->getColumnHeader(), CellItemType::value, requestedCellAddress, stringToTypeMapper);
+
+            requestedCell->cellStatus = CellStatus::calculating;
 
             // If cell is directly self-referenced
             if (requestedCell == cell)

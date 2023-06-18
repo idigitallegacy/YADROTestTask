@@ -22,6 +22,11 @@ enum CellItemType {
     equality
 };
 
+enum CellStatus {
+    await = 0,
+    calculating
+};
+
 template<typename dtype>
 class CellItem {
 private:
@@ -48,6 +53,7 @@ private:
 
 public:
     CellItemType cellItemType;
+    CellStatus cellStatus;
 
     explicit CellItem(const RowHeader &rowHeader, const ColumnHeader &columnHeader, CellItemType cellType) {
         _originalCellType = cellType;
@@ -56,6 +62,7 @@ public:
         _left = nullptr;
         _right = nullptr;
         cellItemType = cellType;
+        cellStatus = CellStatus::await;
     }
 
     explicit CellItem(const RowHeader &rowHeader, const ColumnHeader &columnHeader, CellItemType cellType, const std::string &value, dtype(*stringToTypeMapper)(const std::string &)) {
@@ -66,6 +73,7 @@ public:
         _formula = value;
         _value = Optional<dtype>();
         cellItemType = cellType;
+        cellStatus = CellStatus::await;
 
         if (cellType == CellItemType::value) {
             if (!validateValue(value))

@@ -18,7 +18,8 @@
 #endif
 
 #ifndef MAX_RECURSION_DEPTH
-    #define MAX_RECURSION_DEPTH 100 // used to detect self-references (I've got an idea, how to detect it better, but don't know how to elaborate it)
+    // Set this constant to 0 to unlimit the recursion depth
+    #define MAX_RECURSION_DEPTH 300 // used to detect self-references (if the default check didn't pass).
 #endif
 
 #ifndef TEST_DATA_PATH
